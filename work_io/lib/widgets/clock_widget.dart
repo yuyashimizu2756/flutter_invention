@@ -6,15 +6,14 @@ import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 class ClockWidget extends StatefulWidget {
-  ClockWidget({Key key}) : super(key: key);
-
+  ClockWidget({Key key, this.relate}) : super(key: key);
+  final double relate;
   @override
   ClockWidgetState createState() => ClockWidgetState();
 }
 
 class DateWidget extends StatefulWidget {
   DateWidget({Key key}) : super(key: key);
-
   @override
   DateWidgetState createState() => DateWidgetState();
 }
@@ -81,7 +80,7 @@ class ClockWidgetState extends State<ClockWidget> {
   @override
   Widget build(BuildContext context) {
     var text = _dateFormat.format(_nowTime);
-    var fontSize = MediaQuery.of(context).size.width * 0.2;
+    var fontSize = MediaQuery.of(context).size.width * widget.relate;
     return Stack(
       children: <Widget>[
         Text(
@@ -90,7 +89,7 @@ class ClockWidgetState extends State<ClockWidget> {
               fontSize: fontSize,
               foreground: Paint()
                 ..style = PaintingStyle.stroke
-                ..strokeWidth = 2
+                ..strokeWidth = 0.1
                 ..color = Colors.black),
         ),
         Text(
