@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
@@ -19,7 +18,7 @@ class DateWidget extends StatefulWidget {
 }
 
 class DateWidgetState extends State<DateWidget> {
-  var _nowDate = DateTime.now();
+  var _nowDate = DateTime.now().add(new Duration(hours: 9));
 
   @override
   void initState() {
@@ -29,15 +28,17 @@ class DateWidgetState extends State<DateWidget> {
   }
 
   void _initDate() {
-    Timer.periodic(Duration(milliseconds: 33),
-        (Timer timer) => setState(() => _nowDate = DateTime.now()));
+    Timer.periodic(
+        Duration(milliseconds: 33),
+        (Timer timer) => setState(
+            () => _nowDate = DateTime.now().add(new Duration(hours: 9))));
   }
 
   @override
   Widget build(BuildContext context) {
     final _dateFormat = new DateFormat.yMMMEd('ja_JP');
     var text = _dateFormat.format(_nowDate);
-    var fontSize = MediaQuery.of(context).size.width * 0.08;
+    var fontSize = MediaQuery.of(context).size.width * 0.05;
     return Stack(
       children: <Widget>[
         Text(
@@ -46,13 +47,14 @@ class DateWidgetState extends State<DateWidget> {
               fontSize: fontSize,
               foreground: Paint()
                 ..style = PaintingStyle.stroke
-                ..strokeWidth = 2
-                ..color = Colors.black),
+                ..strokeWidth = 0.01
+                ..color = Colors.green),
         ),
         Text(
           text,
           style: TextStyle(
             fontSize: fontSize,
+            color: Colors.white,
           ),
         )
       ],
@@ -90,11 +92,12 @@ class ClockWidgetState extends State<ClockWidget> {
               foreground: Paint()
                 ..style = PaintingStyle.stroke
                 ..strokeWidth = 0.1
-                ..color = Colors.black),
+                ..color = Colors.green),
         ),
         Text(
           text,
           style: TextStyle(
+            color: Colors.white,
             fontSize: fontSize,
           ),
         )

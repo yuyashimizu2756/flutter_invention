@@ -1,21 +1,11 @@
 import 'package:flutter/material.dart';
-import 'widgets/clock_widget.dart';
+import 'widgets/homePage_widget.dart';
+import 'widgets/roster_widget.dart';
+import 'widgets/workAggregation_widget.dart';
+import 'widgets/settings_widget.dart';
 
 void main() => runApp(MyApp());
 
-// class MyApp extends StatelessWidget {
-//   // This widget is the root of your application.
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Flutter Clock',
-//       theme: ThemeData(
-//         primaryColor: Colors.white,
-//       ),
-//       home: _ClockHomePage(),
-//     );
-//   }
-// }
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -80,7 +70,7 @@ class _MyHomePageState extends State<MyHomePage>
     return Scaffold(
       backgroundColor: Colors.blue[900],
       appBar: AppBar(
-        backgroundColor: Colors.blue[900],
+        backgroundColor: Colors.tealAccent[700],
         title: Text(
           '勤務管理',
           style: TextStyle(fontSize: 16),
@@ -94,10 +84,10 @@ class _MyHomePageState extends State<MyHomePage>
             });
           },
           children: [
-            _ClockHomePage(),
-            BookScreen(),
-            // CloudScreen(),
-            // CakeScreen(),
+            HomePage(),
+            Roster(),
+            ChangeForm(),
+            Settings(),
           ]),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
@@ -111,117 +101,6 @@ class _MyHomePageState extends State<MyHomePage>
           });
         },
         items: myBottomNavBarItems(),
-      ),
-    );
-  }
-}
-
-class _ClockHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        margin: EdgeInsets.only(top: 120),
-        child: Center(
-          child: Column(
-            children: <Widget>[
-              DateWidget(),
-              ClockWidget(
-                relate: 0.18,
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  RaisedButton(
-                    color: Colors.green[300],
-                    child: Text(
-                      '出勤',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 50.0,
-                      ),
-                    ),
-                    onPressed: () async {
-                      showDialog<int>(
-                        context: context,
-                        barrierDismissible: true,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            shape: const RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20.0))),
-                            title: Text('出勤しました！'),
-                            content: Text('頑張ってください！！'),
-                            actions: <Widget>[
-                              FlatButton(
-                                child: Text('OK'),
-                                onPressed: () => Navigator.of(context).pop(1),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    },
-                  ),
-                  RaisedButton(
-                    color: Colors.orange[400],
-                    child: Text(
-                      '退勤',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 50.0,
-                      ),
-                    ),
-                    onPressed: () async {
-                      showDialog<int>(
-                        context: context,
-                        barrierDismissible: true,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            shape: const RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20.0))),
-                            title: Text('退勤しました'),
-                            content: Text('お疲れ様です！！'),
-                            actions: <Widget>[
-                              FlatButton(
-                                child: Text('OK'),
-                                onPressed: () => Navigator.of(context).pop(1),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class BookScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    /*3*/
-    return MaterialApp(
-      /*4*/
-      title: 'Welcome to Flutter',
-      home: Scaffold(
-        /*5*/
-        appBar: AppBar(
-          /*6*/
-          title: Text('Welcome to Flutter'),
-        ),
-        body: Center(
-          /*7*/
-          child: Text('Hello World'),
-        ),
       ),
     );
   }
