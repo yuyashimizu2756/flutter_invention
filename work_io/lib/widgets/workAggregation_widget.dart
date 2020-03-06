@@ -20,7 +20,7 @@ class _ChangeFormState extends State<ChangeForm> {
             ),
             height: 19,
             decoration: new BoxDecoration(
-              color: Colors.green,
+              color: Colors.white,
               borderRadius: new BorderRadius.all(new Radius.circular(5)),
             ),
             // child: SingleChildScrollView(
@@ -45,25 +45,6 @@ class _ChangeFormState extends State<ChangeForm> {
                   ),
                 ),
               ),
-            ),
-          ),
-          // Settings(),
-          Expanded(
-            child: ListView.builder(
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              // itemCount: items.length,
-              itemBuilder: (BuildContext context, int index) {
-                // final item = items[index];
-
-                return new Card(
-                  child: ListTile(
-                    leading: FlutterLogo(),
-                    title: Text("a"),
-                    // Text(item["id"].toString() + " : " + item["content"]),
-                  ),
-                );
-              },
             ),
           ),
         ],

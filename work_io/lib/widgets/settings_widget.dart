@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'homePage_widget.dart';
 
 class Settings extends StatefulWidget {
+  // Settings({Key key, this.lists}) : super(key: key);
+  // final List<Map<String, dynamic>> lists;
   @override
   _MyCustomFormState createState() => _MyCustomFormState();
 }
@@ -11,20 +14,20 @@ class _MyCustomFormState extends State<Settings> {
   final myController = TextEditingController();
 
   // 適当なリスト用データ
-  List<Map<String, dynamic>> items = [
+  List<Map<String, dynamic>> lists = [
     // {"id": 1, "content": "Content 1"},
     // {"id": 2, "content": "Content 2"},
     // {"id": 3, "content": "Content 3"}
   ];
 
-  //　上記リスト用IDカウンター
+  // 　上記リスト用IDカウンター
   int _counter = 0;
 
-  //　追加ボタンが押されたときに実行する関数
-  void _addItem(String inputtext) {
+  // 　追加ボタンが押されたときに実行する関数
+  void addItem(String inputtext) {
     setState(() {
       _counter++;
-      items.add({"id": _counter, "content": inputtext});
+      lists.add({"id": _counter, "content": inputtext});
     });
   }
 
@@ -39,12 +42,12 @@ class _MyCustomFormState extends State<Settings> {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(
-        left: 30.0,
-        top: 10,
-        right: 30.0,
-        bottom: 10,
+        left: 0,
+        top: 0,
+        right: 0,
+        bottom: 0,
       ),
-      height: 250,
+      height: 320,
       child: Column(
         // mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -80,35 +83,38 @@ class _MyCustomFormState extends State<Settings> {
             ),
           ),
           Expanded(
-            child: ListView.builder(
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              itemCount: items.length,
-              itemBuilder: (BuildContext context, int index) {
-                final item = items[index];
+            child: Container(
+              color: Colors.white,
+              child: ListView.builder(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                itemCount: lists.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final item = lists[index];
 
-                return new Card(
-                  child: ListTile(
-                    leading: FlutterLogo(),
-                    title:
-                        Text(item["id"].toString() + " : " + item["content"]),
-                  ),
-                );
-              },
+                  return new Card(
+                    child: ListTile(
+                      leading: FlutterLogo(),
+                      title:
+                          Text(item["id"].toString() + " : " + item["content"]),
+                    ),
+                  );
+                },
+              ),
             ),
           ),
-          FloatingActionButton(
-            // onPressedでボタンが押された時の動作を渡す
-            onPressed: () {
-              // myController.text で入力されたテキストフィールドの内容を取得
-              // 以下の_addItemは自分で定義済の関数
-              _addItem(myController.text);
+          // FloatingActionButton(
+          //   // onPressedでボタンが押された時の動作を渡す
+          //   onPressed: () {
+          //     // myController.text で入力されたテキストフィールドの内容を取得
+          //     // 以下の_addItemは自分で定義済の関数
+          //     addItem(myController.text);
 
-              // テキストフィールドの内容をクリアする
-              myController.clear();
-            },
-            child: Icon(Icons.add),
-          ),
+          //     // テキストフィールドの内容をクリアする
+          //     myController.clear();
+          //   },
+          //   child: Icon(Icons.add),
+          // ),
         ],
       ),
 

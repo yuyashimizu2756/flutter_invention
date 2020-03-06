@@ -36,7 +36,7 @@ class DateWidgetState extends State<DateWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final _dateFormat = new DateFormat.yMMMEd('ja_JP');
+    final _dateFormat = new DateFormat.yMEd('ja_JP');
     var text = _dateFormat.format(_nowDate);
     var fontSize = MediaQuery.of(context).size.width * 0.05;
     return Stack(
