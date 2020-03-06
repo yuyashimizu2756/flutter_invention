@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -72,7 +74,7 @@ class _HomePageState extends State<HomePage> {
                         borderRadius: BorderRadius.all(Radius.circular(10.0)),
                       ),
                       onPressed: () {
-                        addItem("出勤  " + myController.text);
+                        addItem("出勤  :  " + myController.text);
                         myController.clear();
                       },
                     ),
@@ -89,7 +91,7 @@ class _HomePageState extends State<HomePage> {
                         borderRadius: BorderRadius.all(Radius.circular(10.0)),
                       ),
                       onPressed: () {
-                        addItem("退勤  " + myController.text);
+                        addItem("退勤  :  " + myController.text);
                         myController.clear();
                       },
                     ),
@@ -108,9 +110,9 @@ class _HomePageState extends State<HomePage> {
                       Container(
                         margin: const EdgeInsets.only(
                           left: 10.0,
-                          top: 10,
+                          top: 8,
                           right: 10.0,
-                          bottom: 10,
+                          bottom: 4,
                         ),
                         height: 21,
                         decoration: new BoxDecoration(
@@ -138,31 +140,68 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
+                      Container(
+                        height: 25,
+                        color: Colors.grey[300],
+                        constraints: BoxConstraints(minWidth: 360),
+                        margin: EdgeInsets.all(0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              "   打刻ログ",
+                              style: TextStyle(fontSize: 12),
+                            ),
+                          ],
+                        ),
+                      ),
                       Expanded(
                         child: Container(
                           color: Colors.white,
-                          child: ListView.builder(
-                            // reverse: true,
+                          child: ListView.separated(
+                            separatorBuilder: (context, index) => Divider(
+                              color: Colors.black,
+                            ),
                             scrollDirection: Axis.vertical,
-                            // primary: true,
                             shrinkWrap: true,
                             itemCount: lists.length,
                             itemBuilder: (BuildContext context, int index) {
                               final item = lists[index];
-
-                              return new Card(
-                                child: ListTile(
-                                  dense: true,
-                                  // leading: FlutterLogo(),
-                                  title: Text(
-                                    item["date"] +
-                                        "    " +
-                                        item["time"] +
-                                        "    " +
-                                        item["content"],
+                              return Container(
+                                margin: EdgeInsets.symmetric(horizontal: 10),
+                                // padding: EdgeInsets.only(top: 12),
+                                color: Colors.white,
+                                // height: 14.5,
+                                child: Text(
+                                  item["date"] +
+                                      "    " +
+                                      item["time"] +
+                                      "    " +
+                                      item["content"],
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    // height: 0.5,
                                   ),
                                 ),
                               );
+                              // return Container(
+                              //   margin: EdgeInsets.only(top: 0, bottom: 0),
+                              //   constraints: BoxConstraints(maxHeight: 20),
+                              //   child: ListTile(
+                              //     dense: true,
+                              //     title: Text(
+                              //       item["date"] +
+                              //           "    " +
+                              //           item["time"] +
+                              //           "    " +
+                              //           item["content"],
+                              //       style: TextStyle(
+                              //         decoration: TextDecoration.underline,
+                              //       ),
+                              //     ),
+                              //   ),
+                              // );
                             },
                           ),
                         ),
