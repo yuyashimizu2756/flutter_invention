@@ -143,7 +143,7 @@ class _HomePageState extends State<HomePage> {
                       Container(
                         height: 25,
                         color: Colors.grey[300],
-                        constraints: BoxConstraints(minWidth: 360),
+                        constraints: BoxConstraints(minWidth: 420),
                         margin: EdgeInsets.all(0),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
