@@ -24,6 +24,7 @@ if (flutterVersionName == null) {
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 28
@@ -46,6 +47,33 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    flavorDimensions 'default'
+    productFlavors {
+        develop {
+            dimension 'default'
+            applicationId 'com.example.work_io'
+        }
+        staging {
+            dimension 'default'
+            applicationId 'com.example.work_io'
+        }
+        production {
+            dimension 'default'
+            applicationId 'com.example.work_io'
+        }
+    }
+
+    signingConfigs {
+        debug {
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storeFile file('../keystore/debug.keystore')
+            storePassword 'android'
+        }
+        
+    }
+
+
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
@@ -64,4 +92,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    implementation 'com.google.firebase:firebase-analytics:17.5.0'
 }
+
+
